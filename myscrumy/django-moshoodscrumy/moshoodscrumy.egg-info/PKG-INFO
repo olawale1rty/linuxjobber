@@ -1,0 +1,14 @@
+Metadata-Version: 1.0
+Name: moshoodscrumy
+Version: 0.1
+Summary: A Linuxjobber Internship project.
+Home-page: https://oladev.herokuapp.com
+Author: Olawale
+Author-email: folarinolawale3415@gmail.com
+License: BSD
+Description: Linuxjobber Internship Project
+        
+        This App returns a string when you visit the default url. i.e /
+        
+Keywords: Linuxjobber internship moshoodscrumy
+Platform: UNKNOWN

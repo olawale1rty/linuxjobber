@@ -3,7 +3,12 @@ from django.shortcuts import render
 # Create your views here.
 
 from django.http import HttpResponse
-
+from .models import ScrumyGoals
 
 def index(request):
-	return HttpResponse("Welcome to Django") 
+	output = ScrumyGoals.objects.filter(goal_name='Learn Django')
+	return HttpResponse(output)
+
+def move_goal(request, **kwargs):
+	output = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
+	return HttpResponse(output) 
