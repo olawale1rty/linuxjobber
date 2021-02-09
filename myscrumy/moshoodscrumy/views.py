@@ -21,6 +21,13 @@ def add_goal(request):
 	return HttpResponse('Saved Successfully')
 
 def home(request):
-	goal = ScrumyGoals.objects.all()
-	output = ', '.join([eachgoal.goal_name for eachgoal in goal])
-	return HttpResponse(output)
+	dictionary = {}
+	# goal = ScrumyGoals.objects.all()
+	# output = ', '.join([eachgoal.goal_name for eachgoal in goal])
+	# return HttpResponse(output)
+	goal = ScrumyGoals.objects.get(goal_name='Learn Django')
+	# print(goal[3])
+	dictionary['goal_name'] = goal.goal_name
+	dictionary['goal_id'] = goal.goal_id
+	dictionary['user'] = goal.user 
+	return render(request, 'moshoodscrumy/home.html', dictionary)
