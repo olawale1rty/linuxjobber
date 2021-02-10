@@ -30,28 +30,28 @@ def add_goal(request):
 
 def home(request):
 	## LAB 12
-	# goal = ScrumyGoals.objects.all()
-	# output = ', '.join([eachgoal.goal_name for eachgoal in goal])
-	# return HttpResponse(output)
+	goal = ScrumyGoals.objects.all()
+	output = ', '.join([eachgoal.goal_name for eachgoal in goal])
+	return HttpResponse(output)
 
-	## LAB 13
+	# ## LAB 13
+	# # dictionary = {}
+	# # goal = ScrumyGoals.objects.get(goal_name='Learn Django')
+	# # dictionary['goal_name'] = goal.goal_name
+	# # dictionary['goal_id'] = goal.goal_id
+	# # dictionary['user'] = goal.user 
+	# # return render(request, 'moshoodscrumy/home.html', dictionary)
+
+	# ## LAB 15
 	# dictionary = {}
-	# goal = ScrumyGoals.objects.get(goal_name='Learn Django')
-	# dictionary['goal_name'] = goal.goal_name
-	# dictionary['goal_id'] = goal.goal_id
-	# dictionary['user'] = goal.user 
+	# users = User.objects.all()
+	# # weekly_goals = GoalStatus.objects.filter(status_name='Weekly Goal')
+	# # daily_goals = GoalStatus.objects.filter(status_name='Daily Goal')
+	# # verify_goals = GoalStatus.objects.filter(status_name='Verify Goal')
+	# # done_goals = GoalStatus.objects.filter(status_name='Done Goal')
+	# # dictionary['weekly_goals'] = weekly_goals
+	# # dictionary['daily_goals'] = daily_goals
+	# # dictionary['verify_goals'] = verify_goals
+	# # dictionary['done_goals'] = done_goals
+	# dictionary['users'] = users 
 	# return render(request, 'moshoodscrumy/home.html', dictionary)
-
-	## LAB 15
-	dictionary = {}
-	users = User.objects.all()
-	# weekly_goals = GoalStatus.objects.filter(status_name='Weekly Goal')
-	# daily_goals = GoalStatus.objects.filter(status_name='Daily Goal')
-	# verify_goals = GoalStatus.objects.filter(status_name='Verify Goal')
-	# done_goals = GoalStatus.objects.filter(status_name='Done Goal')
-	# dictionary['weekly_goals'] = weekly_goals
-	# dictionary['daily_goals'] = daily_goals
-	# dictionary['verify_goals'] = verify_goals
-	# dictionary['done_goals'] = done_goals
-	dictionary['users'] = users 
-	return render(request, 'moshoodscrumy/home.html', dictionary)
