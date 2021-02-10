@@ -29,12 +29,12 @@ def add_goal(request):
 	return HttpResponse('Saved Successfully')
 
 def home(request):
-	## LAB 12
-	# goal = ScrumyGoals.objects.all()
-	goal = ScrumyGoals.objects.get(goal_name='Keep Learning Django')
-	# output = ', '.join([eachgoal.goal_name for eachgoal in goal])
-	# return HttpResponse(output)
-	return HttpResponse(goal)
+	# ## LAB 12
+	# # goal = ScrumyGoals.objects.all()
+	# goal = ScrumyGoals.objects.get(goal_name='Keep Learning Django')
+	# # output = ', '.join([eachgoal.goal_name for eachgoal in goal])
+	# # return HttpResponse(output)
+	# return HttpResponse(goal)
 
 	## LAB 13
 	# dictionary = {}
@@ -44,16 +44,16 @@ def home(request):
 	# dictionary['user'] = goal.user 
 	# return render(request, 'moshoodscrumy/home.html', dictionary)
 
-	# ## LAB 15
-	# dictionary = {}
-	# users = User.objects.all()
-	# # weekly_goals = GoalStatus.objects.filter(status_name='Weekly Goal')
-	# # daily_goals = GoalStatus.objects.filter(status_name='Daily Goal')
-	# # verify_goals = GoalStatus.objects.filter(status_name='Verify Goal')
-	# # done_goals = GoalStatus.objects.filter(status_name='Done Goal')
-	# # dictionary['weekly_goals'] = weekly_goals
-	# # dictionary['daily_goals'] = daily_goals
-	# # dictionary['verify_goals'] = verify_goals
-	# # dictionary['done_goals'] = done_goals
-	# dictionary['users'] = users 
-	# return render(request, 'moshoodscrumy/home.html', dictionary)
+	## LAB 15
+	dictionary = {}
+	users = User.objects.all()
+	# weekly_goals = GoalStatus.objects.filter(status_name='Weekly Goal')
+	# daily_goals = GoalStatus.objects.filter(status_name='Daily Goal')
+	# verify_goals = GoalStatus.objects.filter(status_name='Verify Goal')
+	# done_goals = GoalStatus.objects.filter(status_name='Done Goal')
+	# dictionary['weekly_goals'] = weekly_goals
+	# dictionary['daily_goals'] = daily_goals
+	# dictionary['verify_goals'] = verify_goals
+	# dictionary['done_goals'] = done_goals
+	dictionary['users'] = users 
+	return render(request, 'moshoodscrumy/home.html', dictionary)
