@@ -30,17 +30,19 @@ def add_goal(request):
 
 def home(request):
 	## LAB 12
-	goal = ScrumyGoals.objects.all()
-	output = ', '.join([eachgoal.goal_name for eachgoal in goal])
-	return HttpResponse(output)
+	# goal = ScrumyGoals.objects.all()
+	goal = ScrumyGoals.objects.get(goal_name='Keep Learning Django')
+	# output = ', '.join([eachgoal.goal_name for eachgoal in goal])
+	# return HttpResponse(output)
+	return HttpResponse(goal)
 
-	# ## LAB 13
-	# # dictionary = {}
-	# # goal = ScrumyGoals.objects.get(goal_name='Learn Django')
-	# # dictionary['goal_name'] = goal.goal_name
-	# # dictionary['goal_id'] = goal.goal_id
-	# # dictionary['user'] = goal.user 
-	# # return render(request, 'moshoodscrumy/home.html', dictionary)
+	## LAB 13
+	# dictionary = {}
+	# goal = ScrumyGoals.objects.get(goal_name='Learn Django')
+	# dictionary['goal_name'] = goal.goal_name
+	# dictionary['goal_id'] = goal.goal_id
+	# dictionary['user'] = goal.user 
+	# return render(request, 'moshoodscrumy/home.html', dictionary)
 
 	# ## LAB 15
 	# dictionary = {}
