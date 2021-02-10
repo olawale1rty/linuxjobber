@@ -14,12 +14,12 @@ def index(request):
 def move_goal(request, **kwargs):
 	# output = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
 	# return HttpResponse(output)
-
+	dictionary = {'error': 'A record with that goal id does not exist'}
 	## LAB 14
 	try: 
 		obj = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
 	except Exception as e: 
-		return render(request, 'moshoodscrumy/exception.html', {'error': 'A record with that goal id does not exist'}) 
+		return render(request, 'moshoodscrumy/exception.html', dictionary) 
 	else: 
 		return HttpResponse(obj.goal_name) 
 
