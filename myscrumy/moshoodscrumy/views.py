@@ -24,7 +24,7 @@ def move_goal(request, **kwargs):
 		return HttpResponse(obj.goal_name) 
 
 def add_goal(request):
-	add_goal = ScrumyGoals.objects.create(goal_name = 'Keep Learning Django', goal_id = random.randint(1000, 9999), created_by = 'Louis', moved_by = 'Louis', owner = 'Louis', goal_status = GoalStatus.objects.get(status_name='Weekly Goal'), user = User.objects.get(username='louis'))
+	add_goal = ScrumyGoals.objects.create(goal_name = 'Keep Learning Django', goal_id = random.randrange(1000, 9999, 2), created_by = 'Louis', moved_by = 'Louis', owner = 'Louis', goal_status = GoalStatus.objects.get(status_name='Weekly Goal'), user = User.objects.get(username='louis'))
 	add_goal.save()
 	return HttpResponse('Saved Successfully')
 
