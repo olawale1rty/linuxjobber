@@ -47,13 +47,14 @@ def home(request):
 	## LAB 15
 	dictionary = {}
 	users = User.objects.all()
-	# weekly_goals = GoalStatus.objects.filter(status_name='Weekly Goal')
-	# daily_goals = GoalStatus.objects.filter(status_name='Daily Goal')
-	# verify_goals = GoalStatus.objects.filter(status_name='Verify Goal')
-	# done_goals = GoalStatus.objects.filter(status_name='Done Goal')
-	# dictionary['weekly_goals'] = weekly_goals
-	# dictionary['daily_goals'] = daily_goals
-	# dictionary['verify_goals'] = verify_goals
-	# dictionary['done_goals'] = done_goals
+	weekly_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Weekly Goal'))
+	daily_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Daily Goal'))
+	verify_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Verify Goal'))
+	done_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Done Goal'))
+	dictionary['weekly_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in weekly_goals])
+	dictionary['daily_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in daily_goals])
+	dictionary['verify_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in verify_goals])
+	dictionary['done_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in done_goals])
 	dictionary['users'] = users 
+	dictionary['user_real'] = '  '.join([eachgoal_1.username for eachgoal_1 in users])
 	return render(request, 'moshoodscrumy/home.html', dictionary)
