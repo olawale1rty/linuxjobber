@@ -6,5 +6,5 @@ urlpatterns = [
     path('', views.index),
     path('addgoal/', views.add_goal),
     path('home/', views.home, name='about'),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls')), # Lab16 Task One
 ]

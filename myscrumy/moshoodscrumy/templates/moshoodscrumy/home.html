@@ -16,20 +16,48 @@
 <body>
 	<table style="width:100%">
 		<tr>
-			<th>User</th>
+			<th>Users</th>
 			<th>Weekly Goals</th>
 			<th>Daily Goals</th>
 			<th>Verify Goals</th>
 			<th>Done Goals</th> 
 		</tr>
+		{% for user in users %}
 		<tr>
-			<th>{{user_real}}</th> 
-			<th>{{weekly_goals}}</th> 
-			<th>{{daily_goals}}</th> 
-			<th>{{verify_goals}}</th> 
-			<th>{{done_goals}}</th> 
+			<td class="user" rowspan="{{user.user_to_scrumy.count}}">{{ user }}</td>
+			{% for goal in user.user_to_scrumy.all %}
+			<tr>
+			{% if goal.goal_status.status_name == 'Weekly Goal' %}
+				<td>{{goal.goal_id}}  {{ goal.goal_name }}</td>
+				<td></td>
+				<td></td>
+				<td></td>
+			{% elif goal.goal_status.status_name == 'Daily Goal'%}
+				<td></td>
+				<td>{{goal.goal_id}}  {{ goal.goal_name }}</td>
+				<td></td>
+				<td></td>
+			{% elif goal.goal_status.status_name == 'Verify Goal'%}
+				<td></td>
+				<td></td>
+				<td>{{goal.goal_id}}  {{ goal.goal_name }}</td>
+				<td></td>
+			{% else %}
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>{{goal.goal_id}}  {{ goal.goal_name }}</td>
+			{% endif %}
+			</tr>
+			{% endfor %}
 		</tr>
+		{% endfor %}
 	</table>
-	
+	<script>
+		let userRow = document.getElementsByClassName('user');
+		for (var i = 0; i < userRow.length; i++) {
+			userRow[i].rowSpan += 1
+		}
+	</script>
 </body>
 </html>
