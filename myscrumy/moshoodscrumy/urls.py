@@ -1,6 +1,7 @@
 from django.urls import path, include
 from moshoodscrumy import views
 
+app_name = 'moshoodscrumy'
 urlpatterns = [
     path('movegoal/<int:goal_id>', views.move_goal),
     path('', views.index),
