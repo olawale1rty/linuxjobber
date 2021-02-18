@@ -43,13 +43,13 @@ def add_goal(request):
 	form = CreateGoalForm() 
 	if request.method == 'POST': 
 		form = CreateGoalForm(request.POST)
-		form.save(commit=False) 
-		form.goal_id = random.randrange(1000, 9999, 2)
-		form.created_by = 'Louis'
-		form.moved_by = 'Louis'
-		form.owner = 'Louis' 
-		form.goal_status = GoalStatus.objects.get(status_name='Weekly Goal'),
-		form.save()
+		good_to_go = form.save(commit=False) 
+		good_to_go.goal_id = random.randrange(1000, 9999, 2)
+		good_to_go.created_by = 'Louis'
+		good_to_go.moved_by = 'Louis'
+		good_to_go.owner = 'Louis' 
+		good_to_go.goal_status = GoalStatus.objects.get(status_name='Weekly Goal'),
+		good_to_go.save()
 		# user = User.objects.get(username=request.user)
 		# my_group = Group.objects.get(name = 'Developer') 
 		# my_group.user_set.add(user)
