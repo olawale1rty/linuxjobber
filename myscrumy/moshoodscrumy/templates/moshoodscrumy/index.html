@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SignUp</title>
+</head>
+<body>
+	<a href="{% url 'moshoodscrumy:about' %}">About us</a>
+	<form method="post">
+		{% csrf_token %} 
+		 {{form}}
+	</form>
+</body>

@@ -7,17 +7,22 @@ from django.http import HttpResponse
 from .models import ScrumyGoals, GoalStatus
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Group 
+from .forms import SignupForm, CreateGoalForm
 
 def index(request):
-	
-	user = User.objects.get(username=request.user)
-	my_group = Group.objects.get(name = 'Developer') 
-	my_group.user_set.add(user)
-	if user.groups.filter(name='Developer').exists() :
-		return render(request, 'moshoodscrumy/success.html')
-	else:
-		output = ScrumyGoals.objects.filter(goal_name='Learn Django')
-		return HttpResponse(output)
+	form = SignupForm() 
+	if request.method == 'POST': 
+		form = SignupForm(request.POST)
+		form.save()
+		# user = User.objects.get(username=request.user)
+		# my_group = Group.objects.get(name = 'Developer') 
+		# my_group.user_set.add(user)
+		# if user.groups.filter(name='Developer').exists() :
+		# 	return render(request, 'moshoodscrumy/success.html') 
+	else: 
+		form = SignupForm()
+
+	return render(request, 'moshoodscrumy/index.html', {'form':form}) 
 
 def move_goal(request, **kwargs):
 	# output = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
