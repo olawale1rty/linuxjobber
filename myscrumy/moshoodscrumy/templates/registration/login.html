@@ -4,6 +4,7 @@
 	<title>Login</title>
 </head>
 <body>
+	<a href="{% url 'moshoodscrumy:about' %}">About us</a>
 	<form method="post">
 		{% csrf_token %} 
 		  <div class="container">
@@ -26,4 +27,3 @@
 		  </div>
 	</form>
 </body>
-</html>
