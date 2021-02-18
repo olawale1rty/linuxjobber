@@ -1,6 +1,6 @@
 
 from django.forms import ModelForm, TextInput
-from .models import City
+from .models import ScrumyGoals
 from django.contrib.auth.models import User
 
 class SignupForm(ModelForm):
