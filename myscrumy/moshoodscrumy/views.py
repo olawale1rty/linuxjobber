@@ -14,14 +14,13 @@ def index(request):
 	if request.method == 'POST': 
 		form = SignupForm(request.POST)
 		form.save()
-		# user = User.objects.get(username=request.user)
-		# my_group = Group.objects.get(name = 'Developer') 
-		# my_group.user_set.add(user)
-		# if user.groups.filter(name='Developer').exists() :
-		# 	return render(request, 'moshoodscrumy/success.html') 
+		user = User.objects.get(username=request.POST['username'])
+		my_group = Group.objects.get(name = 'Developer') 
+		my_group.user_set.add(user)
+		if user.groups.filter(name='Developer').exists() :
+			return render(request, 'moshoodscrumy/success.html') 
 	else: 
 		form = SignupForm()
-
 	return render(request, 'moshoodscrumy/index.html', {'form':form}) 
 
 def move_goal(request, **kwargs):
@@ -49,6 +48,7 @@ def add_goal(request):
 		good_to_go.moved_by = 'Louis'
 		good_to_go.owner = 'Louis' 
 		good_to_go.goal_status = GoalStatus.objects.get(status_name='Weekly Goal')[0],
+		good_to_go.goal_status.save()
 		good_to_go.save()
 		# user = User.objects.get(username=request.user)
 		# my_group = Group.objects.get(name = 'Developer') 
