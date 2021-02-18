@@ -48,7 +48,7 @@ def add_goal(request):
 		good_to_go.created_by = 'Louis'
 		good_to_go.moved_by = 'Louis'
 		good_to_go.owner = 'Louis' 
-		good_to_go.goal_status = GoalStatus.objects.get(status_name='Weekly Goal'),
+		good_to_go.goal_status = GoalStatus(status_name='Weekly Goal'),
 		good_to_go.save()
 		# user = User.objects.get(username=request.user)
 		# my_group = Group.objects.get(name = 'Developer') 
