@@ -12,8 +12,8 @@ def index(request):
 	
 	user = User.objects.get(username='louis')
 	my_group = Group.objects.get(name = 'Developer') 
-	
-	if my_group.user_set.add(user) :
+	my_group.user_set.add(user)
+	if my_group.user_set.get(user).exist() :
 		return render(request, 'moshoodscrumy/success.html')
 	else:
 		output = ScrumyGoals.objects.filter(goal_name='Learn Django')
