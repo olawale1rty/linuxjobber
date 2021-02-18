@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>SignUp</title>
+	<title>Goal</title>
 </head>
 <body>
 	<a href="{% url 'moshoodscrumy:about' %}">About us</a>
 	<form method="post">
 		{% csrf_token %} 
 		 {{form}}
-		 <input type="submit">Sign Up</input>
+		 <input type="submit">Goal</input>
 	</form>
 </body>
