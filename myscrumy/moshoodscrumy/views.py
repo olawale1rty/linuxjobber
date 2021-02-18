@@ -6,10 +6,18 @@ import random
 from django.http import HttpResponse
 from .models import ScrumyGoals, GoalStatus
 from django.contrib.auth.models import User
+from django.contrib.auth.models import Group 
 
 def index(request):
-	output = ScrumyGoals.objects.filter(goal_name='Learn Django')
-	return HttpResponse(output)
+	
+	user = User.objects.get(username='louis')
+	my_group = Group.objects.get(name = 'Developer') 
+	
+	if my_group.user_set.add(user) :
+		return render(request, 'moshoodscrumy/success.html')
+	else:
+		output = ScrumyGoals.objects.filter(goal_name='Learn Django')
+		return HttpResponse(output)
 
 def move_goal(request, **kwargs):
 	# output = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
