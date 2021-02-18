@@ -43,7 +43,7 @@ def add_goal(request):
 	form = CreateGoalForm() 
 	if request.method == 'POST': 
 		form = CreateGoalForm(request.POST)
-		form.save(commit = false) 
+		form.save(commit=False) 
 		form.goal_id = random.randrange(1000, 9999, 2)
 		form.created_by = 'Louis'
 		form.moved_by = 'Louis'
