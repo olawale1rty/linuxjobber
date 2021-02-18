@@ -10,7 +10,7 @@ from django.contrib.auth.models import Group
 
 def index(request):
 	
-	user = User.objects.get(username='louis')
+	user = User.objects.get(username=request.user)
 	my_group = Group.objects.get(name = 'Developer') 
 	my_group.user_set.add(user)
 	if user.groups.filter(name='Developer').exists() :
