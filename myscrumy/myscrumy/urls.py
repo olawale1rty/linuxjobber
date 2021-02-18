@@ -21,3 +21,4 @@ urlpatterns = [
     # path('moshoodscrumy/', include('moshoodscrumy.urls'), name='moshoodscrumy')
     path('moshoodscrumy/', include('moshoodscrumy.urls', namespace='moshoodscrumy'))
 ]
+

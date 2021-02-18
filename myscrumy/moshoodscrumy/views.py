@@ -58,3 +58,4 @@ def home(request):
 	dictionary['users'] = users 
 	dictionary['user_real'] = '  '.join([eachgoal_1.username for eachgoal_1 in users])
 	return render(request, 'moshoodscrumy/home.html', dictionary)
+

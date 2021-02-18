@@ -9,3 +9,4 @@ urlpatterns = [
     path('home/', views.home, name='about'),
     path('accounts/', include('django.contrib.auth.urls')), # Lab16 Task One
 ]
+
