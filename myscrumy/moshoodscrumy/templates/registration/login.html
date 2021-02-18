@@ -5,7 +5,7 @@
 </head>
 <body>
 	<form method="post">
-		{% CSRF_token %} 
+		{% csrf_token %} 
 		  <div class="container">
 		  	{% if form.errors %} invalid login credentials {% endif %}
 		    <label for="username"><b>Username</b></label>
