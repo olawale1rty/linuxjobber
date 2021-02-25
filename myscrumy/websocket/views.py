@@ -63,6 +63,6 @@ def recent_messages(request):
 	output = serialize("json", messages, fields=('username','message','timestamp'))
 	out = []
 	for i in output:
-		out.append(i[2])
+		out.append(i.fields)
 	data = {'messages': out}
 	_send_to_connection_2(connection_id, data)
