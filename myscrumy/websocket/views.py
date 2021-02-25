@@ -54,5 +54,8 @@ def recent_messages(request):
 	body = _parse_body(request.body)
 	connection_id = body['connectionId']
 	messages = ChatMessage.objects.all()
-	data = {'messages':[messages]}
+	message_array = []
+	for message in messages:
+		message_array.append(message)
+	data = {'messages': message_array}
 	_send_to_connection(connection_id, data)
