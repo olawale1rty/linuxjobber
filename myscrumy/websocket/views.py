@@ -36,10 +36,10 @@ def _send_to_connection(connection_id, data):
 		region_name='us-east-2',aws_access_key_id='AKIATC5Y3PONHHAOLFVT', aws_secret_access_key='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')
 	return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=json.dumps(data).encode('utf-8'))
 
-def _send_to_connection_2(connection_id, data):
-	gatewayapi = boto3.client('apigatewaymanagementapi', endpoint_url='https://vlb431qo61.execute-api.us-east-2.amazonaws.com/test/',
-		region_name='us-east-2',aws_access_key_id='AKIATC5Y3PONHHAOLFVT', aws_secret_access_key='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')
-	return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=data)
+# def _send_to_connection_2(connection_id, data):
+# 	gatewayapi = boto3.client('apigatewaymanagementapi', endpoint_url='https://vlb431qo61.execute-api.us-east-2.amazonaws.com/test/',
+# 		region_name='us-east-2',aws_access_key_id='AKIATC5Y3PONHHAOLFVT', aws_secret_access_key='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')
+# 	return gatewayapi.post_to_connection(ConnectionId=connection_id, Data=data)
  
 @csrf_exempt
 def send_message(request):
@@ -59,10 +59,9 @@ def send_message(request):
 def recent_messages(request):
 	body = _parse_body(request.body)
 	connection_id = body['connectionId']
-	messages = ChatMessage.objects.all().order_by('-pk')
-	output = serialize("json", messages, fields=('username','message','timestamp'))
-	out = []
-	for i in output:
-		out.append(i)
-	data = {'messages': out}
-	_send_to_connection_2(connection_id, data)
+	messages = (ChatMessage.objects.all().order_by('-pk').values('username','message','timestamp'))
+
+
+	# output = serialize("json", messages, fields=('username','message','timestamp'))
+	data = {'messages': list(messages)}
+	_send_to_connection(connection_id, data)
