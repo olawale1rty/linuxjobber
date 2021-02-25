@@ -54,7 +54,7 @@ def send_message(request):
 def recent_messages(request):
 	body = _parse_body(request.body)
 	connection_id = body['connectionId']
-	messages = ChatMessage.objects.all()
-	output = serialize("json", messages)
-	data = {'messages': [output]}
-	_send_to_connection(connection_id, data)
+	messages = ChatMessage.objects.all().order_by('-pk')
+	output = serialize("json", messages, fields=('username','message','timestamp'))
+	# data = {'messages': [output]}
+	_send_to_connection(connection_id, output)
