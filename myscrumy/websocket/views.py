@@ -49,6 +49,7 @@ def send_message(request):
 	for i in connections:
 		_send_to_connection(i.connection_id, data)	
 
+@csrf_exempt
 def recent_messages(request):
 	body = _parse_body(request.body)
 	connection_id = body['connectionId']
