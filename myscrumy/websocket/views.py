@@ -48,3 +48,10 @@ def send_message(request):
 	data = {'messages':[body]}
 	for i in connections:
 		_send_to_connection(i.connection_id, data)	
+
+def recent_messages(request):
+	body = _parse_body(request.body)
+	connection_id = body['connectionId']
+	messages = ChatMessage.objects.all()
+	data = {'messages':[messages]}
+	_send_to_connection(connection_id, data)
