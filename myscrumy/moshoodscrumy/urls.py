@@ -3,7 +3,7 @@ from moshoodscrumy import views
 
 app_name = 'moshoodscrumy'
 urlpatterns = [
-    path('movegoal/<int:goal_id>', views.move_goal),
+    path('movegoal/<int:goal_id>', views.move_goal, name='movegoal'),
     path('', views.index),
     path('addgoal/', views.add_goal, name='addgoal'),
     path('home/', views.home, name='about'),

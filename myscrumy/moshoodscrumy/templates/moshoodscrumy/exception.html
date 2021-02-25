@@ -1,9 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Exception</title>
+	<title>Goal</title>
 </head>
 <body>
-  <h1>{{error}}</h1>
+	<h1>{{pass}}</h1>
+	<form method="post">
+		{% csrf_token %} 
+		 
+		 	<select name="goal_status">
+		 		<option value="Weekly Goal">Weekly Goal</option>
+		 		<option value="Daily Goal">Daily Goal</option>
+		 		<option value="Verify Goal">Verify Goal</option>
+		 		<option value="Done Goal">Done Goal</option>
+		 	</select>
+		 
+		 <input type="submit"></input>
+	</form>
 </body>
-</html>

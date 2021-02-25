@@ -26,14 +26,66 @@ def index(request):
 def move_goal(request, **kwargs):
 	# output = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
 	# return HttpResponse(output)
-	dictionary = {'error': 'A record with that goal id does not exist'}
+	
 	## LAB 14
-	try: 
-		obj = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
-	except Exception as e: 
-		return render(request, 'moshoodscrumy/exception.html', dictionary) 
-	else: 
-		return HttpResponse(obj.goal_name) 
+	# dictionary = {'error': 'A record with that goal id does not exist'}
+	# try: 
+	# 	obj = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
+	# except Exception as e: 
+	# 	return render(request, 'moshoodscrumy/exception.html', dictionary) 
+	# else: 
+	# 	return HttpResponse(obj.goal_name)
+
+	## LAB 21
+	dictionary = {'pass': 'Successfully'}
+	if request.method == 'POST':
+		if request.user.groups.filter(name='Developer').exists():
+			obj = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
+			if request.user == obj.user :
+				if request.POST['goal_status'] == 'Done Goal':
+					return HttpResponse('You are a developer')
+				else:
+					obj.goal_status = GoalStatus(status_name=request.POST['goal_status'])
+					obj.goal_status.save()
+					obj.save()
+					return render(request, 'moshoodscrumy/exception.html', dictionary)
+			else:
+				return HttpResponse('Not the owner')
+		elif request.user.groups.filter(name='Quality Assurance').exists():
+			obj = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
+			if request.user == obj.user :
+					obj.goal_status = GoalStatus(status_name=request.POST['goal_status'])
+					obj.goal_status.save()
+					obj.save()
+					return render(request, 'moshoodscrumy/exception.html', dictionary)
+			else:
+				if request.POST['goal_status'] == 'Done Goal':
+					obj.goal_status = GoalStatus(status_name=request.POST['goal_status'])
+					obj.goal_status.save()
+					obj.save()
+					return render(request, 'moshoodscrumy/exception.html', dictionary)
+				else:
+					return HttpResponse('Not the owner')
+		elif request.user.groups.filter(name='Owner').exists():
+			obj = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
+			if request.user == obj.user :
+					obj.goal_status = GoalStatus(status_name=request.POST['goal_status'])
+					obj.goal_status.save()
+					obj.save()
+					return render(request, 'moshoodscrumy/exception.html', dictionary)
+			else:
+				return HttpResponse('Not the owner')
+		elif request.user.groups.filter(name='Admin').exists():
+			obj = ScrumyGoals.objects.get(goal_id=kwargs['goal_id'])
+			obj.goal_status = GoalStatus(status_name=request.POST['goal_status'])
+			obj.goal_status.save()
+			obj.save()
+			return render(request, 'moshoodscrumy/exception.html', dictionary)
+		else:
+			return render(request, 'moshoodscrumy/exception.html')
+	else:
+		return render(request, 'moshoodscrumy/exception.html')
+		
 
 def add_goal(request):
 	# add_goal = ScrumyGoals.objects.create(goal_name = 'Keep Learning Django', goal_id = random.randrange(1000, 9999, 2), created_by = 'Louis', moved_by = 'Louis', owner = 'Louis', goal_status = GoalStatus.objects.get(status_name='Weekly Goal'), user = User.objects.get(username='louis'))
@@ -77,8 +129,8 @@ def home(request):
 	# return render(request, 'moshoodscrumy/home.html', dictionary)
 
 	## LAB 15
-	# dictionary = {}
-	# users = User.objects.all()
+	dictionary = {}
+	users = User.objects.all()
 	# weekly_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Weekly Goal'))
 	# daily_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Daily Goal'))
 	# verify_goals = ScrumyGoals.objects.filter(goal_status=GoalStatus.objects.get(status_name='Verify Goal'))
@@ -87,10 +139,10 @@ def home(request):
 	# dictionary['daily_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in daily_goals])
 	# dictionary['verify_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in verify_goals])
 	# dictionary['done_goals'] = '  '.join([eachgoal_1.goal_name for eachgoal_1 in done_goals])
-	# dictionary['users'] = users 
+	dictionary['users'] = users 
 	# dictionary['user_real'] = '  '.join([eachgoal_1.username for eachgoal_1 in users])
-	# return render(request, 'moshoodscrumy/home.html', dictionary)
+	return render(request, 'moshoodscrumy/home.html', dictionary)
 
 	##Lab18
-	return render(request, 'moshoodscrumy/home.html')	
+	# return render(request, 'moshoodscrumy/home.html')	
 
